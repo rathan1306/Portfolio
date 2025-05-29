@@ -5,54 +5,139 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-padding-top: 150px; /* Adjust based on your header height */
+  scroll-behavior: smooth;
+}
+
+/* CSS Variables for Light Mode (default) */
+:root {
+  --bg-color: #f8fafc;
+  --text-color: #1f2937;
+  --header-bg: #1f2937;
+  --link-color: #3b82f6;
+  --link-hover: #60a5fa;
+  --section-bg: #fff;
+  --project-bg: #f1f5f9;
+  --project-border: #3b82f6;
+  --project-title: #1d4ed8;
+  --btn-bg: #3b82f6;
+  --btn-hover-bg: #2563eb;
+  --footer-bg: #e5e7eb;
+  --footer-text: #6b7280;
+  --nav-border: rgba(255, 255, 255, 0.1);
+}
+
+/* CSS Variables for Dark Mode */
+body.dark-mode {
+  --bg-color: #121212;
+  --text-color: #e0e0e0;
+  --header-bg: #222222;
+  --link-color: #60a5fa;
+  --link-hover: #93c5fd;
+  --section-bg: #1c1c1c;
+  --project-bg: #272727;
+  --project-border: #60a5fa;
+  --project-title: #93c5fd;
+  --btn-bg: #2563eb;
+  --btn-hover-bg: #3b82f6;
+  --footer-bg: #1a1a1a;
+  --footer-text: #999999;
+  --nav-border: rgba(255, 255, 255, 0.2);
+}
+
 /* Global Styles */
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f8fafc;
-  color: #1f2937;
+  background-color: var(--bg-color);
+  color: var(--text-color);
   line-height: 1.7;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .container {
   max-width: 960px;
   margin: 0 auto;
   padding: 40px 20px;
-  background-color: #fff;
+  background-color: var(--section-bg);
   border-radius: 12px;
   margin-bottom: 40px;
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.05);
+  transition: background-color 0.3s ease;
 }
 
 /* Header */
-/* Header */
 header {
-  background-color: #1f2937;
+  background-color: var(--header-bg);
   padding: 20px 0;
   position: sticky;
   top: 0;
   z-index: 1000;
-  transition: box-shadow 0.3s ease;
+  transition: box-shadow 0.3s ease, background-color 0.3s ease;
 }
 
 header.scrolled {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-
 header .container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: none; /* <-- remove white background */
+  background: none;
   padding: 0 40px;
+  flex-wrap: wrap;
+  gap: 12px;
 }
 
+/* Flex order for mobile rearrangement */
 .logo {
   font-size: 28px;
   font-weight: bold;
   color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  order: 1;
 }
 
+.menu-toggle {
+  display: none;
+  font-size: 28px;
+  color: #ffffff;
+  cursor: pointer;
+  margin-left: auto;
+  order: 2;
+}
+
+nav {
+  display: flex;
+  order: 3;
+}
+
+nav a.active {
+  border-bottom: 2px solid var(--link-hover);
+  padding-bottom: 2px;
+  color: var(--link-hover);
+}
+
+
+#dark-mode-toggle {
+  font-size: 24px;
+  background: none;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  order: 4;
+  transition: color 0.3s ease;
+}
+
+#dark-mode-toggle:hover {
+  color: var(--link-hover);
+}
+
+/* Navigation */
 nav ul {
   list-style: none;
   display: flex;
@@ -62,32 +147,32 @@ nav ul {
 }
 
 nav a {
-  color: #ffffff; /* bright white for better visibility */
+  color: #ffffff;
   text-decoration: none;
   font-weight: 500;
   transition: color 0.3s ease;
 }
 
 nav a:hover {
-  color: #60a5fa; /* nice blue on hover */
+  color: var(--link-hover);
 }
 
 nav a.active {
-  border-bottom: 2px solid #60a5fa;
+  border-bottom: 2px solid var(--link-hover);
   padding-bottom: 2px;
 }
-
 
 /* Sections */
 .section h2 {
   font-size: 28px;
   margin-bottom: 16px;
-  color: #111827;
+  color: var(--text-color);
 }
 
-.section p, .section li {
+.section p,
+.section li {
   font-size: 16px;
-  color: #374151;
+  color: var(--text-color);
   margin-bottom: 10px;
 }
 
@@ -96,23 +181,24 @@ nav a.active {
 }
 
 .project {
-  background-color: #f1f5f9;
+  background-color: var(--project-bg);
   padding: 20px;
   margin-top: 20px;
-  border-left: 4px solid #3b82f6;
+  border-left: 4px solid var(--project-border);
   border-radius: 6px;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .project h3 {
   margin-bottom: 10px;
-  color: #1d4ed8;
+  color: var(--project-title);
 }
 
 .download-btn {
   display: inline-block;
   margin-top: 10px;
   padding: 10px 16px;
-  background-color: #3b82f6;
+  background-color: var(--btn-bg);
   color: white;
   text-decoration: none;
   border-radius: 6px;
@@ -120,7 +206,7 @@ nav a.active {
 }
 
 .download-btn:hover {
-  background-color: #2563eb;
+  background-color: var(--btn-hover-bg);
 }
 
 /* Footer */
@@ -128,6 +214,88 @@ footer {
   text-align: center;
   padding: 20px;
   font-size: 14px;
-  background-color: #e5e7eb;
-  color: #6b7280;
+  background-color: var(--footer-bg);
+  color: var(--footer-text);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    padding: 20px 16px;
+    margin-bottom: 30px;
+  }
+
+  header .container {
+    flex-direction: row;
+    align-items: center;
+    padding: 0 20px;
+  }
+
+  .logo {
+    font-size: 24px;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  /* Reorder dark mode toggle after hamburger menu */
+  .menu-toggle {
+    order: 2;
+  }
+
+  #dark-mode-toggle {
+    order: 3;
+  }
+
+  nav {
+    order: 4;
+    width: 100%;
+  }
+
+  nav ul {
+    display: none;
+    flex-direction: column;
+    background-color: var(--header-bg);
+    width: 100%;
+    padding: 10px 0;
+  }
+
+  nav.open ul {
+    display: flex;
+  }
+
+  nav a {
+    display: block;
+    padding: 12px 20px;
+    border-bottom: 1px solid var(--nav-border);
+  }
+
+  .section h2 {
+    font-size: 24px;
+  }
+
+  .section p,
+  .section li {
+    font-size: 15px;
+  }
+
+  .project {
+    padding: 16px;
+  }
+
+  .project h3 {
+    font-size: 20px;
+  }
+
+  .download-btn {
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+
+  footer {
+    font-size: 13px;
+    padding: 16px;
+  }
 }
