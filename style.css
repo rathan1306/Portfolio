@@ -196,8 +196,8 @@ nav a.active {
 
 .download-btn {
   display: inline-block;
-  margin-top: 10px;
-  padding: 10px 16px;
+  margin: 10px 10px 10px 0px;
+  padding: 4px 6px 4px 6px;
   background-color: var(--btn-bg);
   color: white;
   text-decoration: none;
@@ -297,5 +297,196 @@ footer {
   footer {
     font-size: 13px;
     padding: 16px;
+  }
+}
+/*chat bot*/
+#chatbot {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 320px;
+  max-height: 500px;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  z-index: 9999;
+  overflow: hidden;
+}
+
+#chat-header {
+  background-color: #333;
+  color: white;
+  padding: 10px;
+  font-weight: bold;
+}
+
+#chat-messages {
+  flex: 1;
+  padding: 10px;
+  overflow-y: auto;
+  font-size: 14px;
+}
+
+#chat-input {
+  display: flex;
+  border-top: 1px solid #ccc;
+}
+
+#chat-input input {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  outline: none;
+  font-size: 14px;
+}
+
+#chat-input button {
+  padding: 10px;
+  background-color: #333;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+/* Suggestions */
+#suggestions {
+  border-top: 1px solid #ccc;
+  padding: 6px;
+  background: #f9f9f9;
+}
+
+#suggestions ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#suggestions li {
+  cursor: pointer;
+  padding: 6px 8px;
+  margin: 3px 0;
+  border-radius: 5px;
+  background-color: #eee;
+  font-size: 13px;
+  transition: background-color 0.2s;
+}
+
+#suggestions li:hover {
+  background-color: #ddd;
+}
+
+/* Chat Toggle Button */
+.chat-toggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999;
+  padding: 12px 16px;
+  font-size: 20px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+/* Chat Widget */
+.chat-widget {
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  width: 320px;
+  max-height: 450px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 9999;
+}
+
+.chat-widget.hidden {
+  display: none;
+}
+
+.chat-header {
+  background: #007bff;
+  color: white;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chat-messages {
+  padding: 10px;
+  overflow-y: auto;
+  flex: 1;
+  background: #f8f9fa;
+}
+
+.chat-input {
+  display: flex;
+  border-top: 1px solid #ccc;
+}
+
+.chat-input input {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  outline: none;
+}
+
+.chat-input button {
+  padding: 0 15px;
+  border: none;
+  background: #007bff;
+  color: white;
+  cursor: pointer;
+}
+
+.chat-toggle:hover {
+  background: #0056b3;
+  transform: scale(1.1);
+}
+
+body.dark-mode #suggestions {
+  background-color: #272727; /* Dark background */
+  border-top: 1px solid #444; /* Darker border */
+}
+
+body.dark-mode #suggestions ul {
+  background-color: transparent; /* inherit */
+}
+
+body.dark-mode #suggestions li {
+  background-color: #444;       /* Darker suggestion background */
+  color: #e0e0e0;               /* Light text */
+  border-radius: 5px;
+  transition: background-color 0.2s;
+}
+
+body.dark-mode #suggestions li:hover {
+  background-color: #666;       /* Slightly lighter hover */
+  color: #fff;
+}
+
+
+/* Responsive for small devices */
+@media (max-width: 480px) {
+  .chat-widget {
+    width: 90%;
+    right: 5%;
+    bottom: 70px;
+  }
+
+  .chat-toggle {
+    right: 10px;
+    bottom: 10px;
   }
 }
