@@ -394,6 +394,32 @@ footer {
   box-shadow: 0 2px 6px rgba(0,0,0,0.3);
 }
 
+/* Add this below your existing .chat-toggle styles */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 rgba(0, 123, 255, 0.7);
+  }
+  50% {
+    transform: scale(1.15);
+    box-shadow: 0 0 15px rgba(0, 123, 255, 0.8);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 rgba(0, 123, 255, 0.7);
+  }
+}
+
+.chat-toggle {
+  animation: pulse 1.5s infinite;
+}
+
+
+.chat-toggle:hover {
+  background: #0056b3;
+  transform: scale(1.1);
+}
+
 /* Chat Widget */
 .chat-widget {
   position: fixed;
@@ -450,31 +476,6 @@ footer {
   cursor: pointer;
 }
 
-.chat-toggle:hover {
-  background: #0056b3;
-  transform: scale(1.1);
-}
-
-body.dark-mode #suggestions {
-  background-color: #272727; /* Dark background */
-  border-top: 1px solid #444; /* Darker border */
-}
-
-body.dark-mode #suggestions ul {
-  background-color: transparent; /* inherit */
-}
-
-body.dark-mode #suggestions li {
-  background-color: #444;       /* Darker suggestion background */
-  color: #e0e0e0;               /* Light text */
-  border-radius: 5px;
-  transition: background-color 0.2s;
-}
-
-body.dark-mode #suggestions li:hover {
-  background-color: #666;       /* Slightly lighter hover */
-  color: #fff;
-}
 
 
 /* Responsive for small devices */

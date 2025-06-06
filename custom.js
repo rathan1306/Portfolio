@@ -114,29 +114,56 @@ document.addEventListener("DOMContentLoaded", () => {
     const text = userText.toLowerCase();
     let response = "Sorry, I didn’t get that.";
 
-    if (text.includes("name")) {
-      response = `My name is ${resumeData.name}.`;
-    } else if (text.includes("project")) {
-      response = `I've worked on: ${resumeData.projects.join(" | ")}`;
-    } else if (text.includes("education")) {
-      response = `My education includes: ${resumeData.education.join(" | ")}`;
-    } else if (text.includes("skill")) {
-      response = `My skills are: ${resumeData.skills.join(" | ")}`;
-    } else if (text.includes("current company")) {
-      response = `I am currently working as ${resumeData.role}.`;
-    } else if (text.includes("contact")) {
-      response = `Email: ${resumeData.contact.email} | Phone: ${resumeData.contact.phone}`;
-    } else if (text.includes("notice")) {
-      response = `My notice period is ${resumeData.notice_period}.`;
-    } else if (text.includes("current ctc")) {
-      response = `My current CTC is ${resumeData.current_ctc}.`;
-    } else if (text.includes("expected ctc")) {
-      response = `My expected CTC is ${resumeData.expected_ctc}.`;
-    } else if (text.includes("location")) {
-      response = `Currently staying in ${resumeData.location}.`;
-    } else if (text.includes("experience")) {
-      response = `I have ${resumeData.experience}.`;
+    function includesAny(text, keywords) {
+      return keywords.some(keyword => text.toLowerCase().includes(keyword.toLowerCase()));
     }
+
+    if (includesAny(text, ["name"])) {
+      response = `My name is ${resumeData.name}.`;
+
+    } else if (includesAny(text, ["project", "projects"])) {
+      response = `I've worked on: ${resumeData.projects.join(" | ")}`;
+
+    } else if (includesAny(text, ["education", "qualification"])) {
+      response = `My education includes: ${resumeData.education.join(" | ")}`;
+
+    } else if (includesAny(text, ["skill", "skills", "technologies"])) {
+      response = `My skills are: ${resumeData.skills.join(" | ")}`;
+
+    } else if (includesAny(text, ["current company", "working at", "job"])) {
+      response = `I am currently working as ${resumeData.role}.`;
+
+    } else if (includesAny(text, ["contact", "phone", "email"])) {
+      response = `Email: ${resumeData.contact.email} | Phone: ${resumeData.contact.phone}`;
+
+    } else if (includesAny(text, ["notice", "notice period"])) {
+      response = `My notice period is ${resumeData.notice_period}.`;
+
+    } else if (includesAny(text, ["current ctc", "current salary","salary"])) {
+      response = `My current CTC is ${resumeData.current_ctc}.`;
+
+    } else if (includesAny(text, ["expected ctc", "expected salary","salary"])) {
+      response = `My expected CTC is ${resumeData.expected_ctc}.`;
+
+    } else if (includesAny(text, ["location", "where are you from", "your city"])) {
+      response = `Currently staying in ${resumeData.location}.`;
+
+    } else if (includesAny(text, ["experience", "work experience"])) {
+      response = `I have ${resumeData.experience}.`;
+
+    } else if (includesAny(text, ["hello", "hi", "hey"])) {
+      response = `Hello, My name is ${resumeData.name}.`;
+
+    } else if (includesAny(text, ["bye", "goodbye", "see you"])) {
+      response = `Bye, <br>
+        Thank you. Looking forward for your response!<br><br>
+        <b>Thanks and Regards</b>,<br>
+        ${resumeData.name}.`;
+
+    } else if (includesAny(text, ["resume", "cv"])) {
+      response = `<a href="resume.pdf" class="download-btn" target="_blank">📄 Download Resume (PDF)</a>`;
+    }
+
 
     setTimeout(() => addMessage("Bot", response), 600);
   }
@@ -168,7 +195,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Initial greeting
   window.addEventListener("load", () => {
-    addMessage("Bot", "Hi! I'm Resume Bot. Ask me anything like: 'What are your skills?', 'Tell me about your education'.");
+    addMessage("Bot", "Hi! I'm Resume Bot. <br> Ask me anything like:'Hello','Resume',<br> 'What are your skills?', 'Tell me about your education'.");
   });
 
   // Chat open/close toggle
